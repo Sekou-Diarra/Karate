@@ -1,4 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Properties/Resources.resx — Fichier de ressources Windows Forms (ResX)
+  ================================================================
+  Fichier de ressources global de l'application Karaté.
+
+  Ce fichier est géré par le Concepteur de ressources de Visual Studio.
+  Il peut contenir : chaînes de texte, images, icônes, sons, objets sérialisés.
+
+  FORMAT : ResX (Resource XML), version 2.0
+  USAGE   : Compilé et embarqué dans l'assembly via EmbeddedResource (voir Karate.csproj).
+  ACCÈS   : Via System.Resources.ResourceManager ou la classe Properties.Resources.
+  ================================================================
+-->
 <root>
   <!-- 
     Microsoft ResX Schema 

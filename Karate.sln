@@ -1,6 +1,26 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
+# ================================================================
+# Karate.sln — Fichier de solution Visual Studio
+# ================================================================
+# Ce fichier décrit la structure de la solution Visual Studio.
+# Il référence le projet Karate.csproj et ses configurations de build.
+#
+# PROJET :
+#   - Nom    : Karate
+#   - Type   : C# Windows Forms ({FAE04EC0-301F-11D3-BF4B-00C04F79EFBC})
+#   - GUID   : {2221E646-BBF4-4324-9BFB-352571EF1F23}
+#   - Fichier: Karate.csproj
+#
+# CONFIGURATIONS :
+#   - Debug|Any CPU   : compilation avec symboles de debug, sans optimisation
+#   - Release|Any CPU : compilation optimisée pour la production
+#
+# COMPATIBILITÉ :
+#   - Version VS minimum : 10.0.40219.1 (Visual Studio 2010)
+#   - Version VS recommandée : 17.x (Visual Studio 2022)
+# ================================================================
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Karate", "Karate.csproj", "{2221E646-BBF4-4324-9BFB-352571EF1F23}"

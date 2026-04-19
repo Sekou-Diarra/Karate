@@ -1,44 +1,92 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Karate.csproj — Fichier de projet MSBuild (C# / Windows Forms)
+  ================================================================
+  Ce fichier décrit le projet Karaté pour MSBuild et Visual Studio.
+  Il définit :
+    - Les propriétés générales (framework cible, type de sortie, GUID)
+    - Les configurations de build (Debug / Release)
+    - Les références aux assemblies .NET et aux packages NuGet
+    - Les fichiers source (.cs) et ressources (.resx) inclus
+  ================================================================
+-->
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
+          Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PROPRIÉTÉS GÉNÉRALES DU PROJET
+       ═══════════════════════════════════════════════════════════ -->
   <PropertyGroup>
+    <!-- Configuration par défaut si non spécifiée en ligne de commande -->
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <!-- Plateforme cible : Any CPU (compatible 32 et 64 bits) -->
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <!-- GUID unique identifiant ce projet dans la solution Visual Studio -->
     <ProjectGuid>{2221E646-BBF4-4324-9BFB-352571EF1F23}</ProjectGuid>
+    <!-- WinExe : application Windows Forms (avec fenêtre, sans console) -->
     <OutputType>WinExe</OutputType>
+    <!-- Namespace racine par défaut pour les nouveaux fichiers -->
     <RootNamespace>Karate</RootNamespace>
+    <!-- Nom du fichier de sortie compilé (Karate.exe) -->
     <AssemblyName>Karate</AssemblyName>
+    <!-- Framework .NET cible : 4.7.2 (nécessite le runtime .NET FX 4.7.2+) -->
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <!-- Alignement des sections du PE (Portable Executable) en octets -->
     <FileAlignment>512</FileAlignment>
+    <!-- Génération automatique des redirections de binding dans App.config -->
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <!-- Déterministe : garantit que deux compilations identiques produisent le même binaire -->
     <Deterministic>true</Deterministic>
   </PropertyGroup>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CONFIGURATION DEBUG
+       Compilation avec symboles de débogage, sans optimisation.
+       Utiliser pour le développement et le débogage.
+       ═══════════════════════════════════════════════════════════ -->
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>       <!-- Génère le fichier .pdb pour le débogage -->
+    <DebugType>full</DebugType>             <!-- Symboles de debug complets -->
+    <Optimize>false</Optimize>             <!-- Pas d'optimisation (facilite le débogage) -->
+    <OutputPath>bin\Debug\</OutputPath>    <!-- Dossier de sortie des binaires Debug -->
+    <DefineConstants>DEBUG;TRACE</DefineConstants>  <!-- Constantes de compilation -->
+    <ErrorReport>prompt</ErrorReport>      <!-- Affiche une boîte de dialogue en cas d'erreur -->
+    <WarningLevel>4</WarningLevel>         <!-- Niveau maximum d'avertissements du compilateur -->
   </PropertyGroup>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CONFIGURATION RELEASE
+       Compilation optimisée sans symboles de débogage.
+       Utiliser pour les livraisons et le déploiement.
+       ═══════════════════════════════════════════════════════════ -->
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <DebugType>pdbonly</DebugType>          <!-- PDB minimal (pour les rapports de crash) -->
+    <Optimize>true</Optimize>              <!-- Optimisation activée -->
+    <OutputPath>bin\Release\</OutputPath>  <!-- Dossier de sortie des binaires Release -->
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       RÉFÉRENCES AUX ASSEMBLIES
+       Dépendances .NET Framework intégrées + packages NuGet
+       ═══════════════════════════════════════════════════════════ -->
   <ItemGroup>
+    <!-- ── Packages NuGet ── -->
+    <!-- BouncyCastle : cryptographie (SSL/TLS requis par MySql.Data) -->
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
       <HintPath>packages\BouncyCastle.Cryptography.2.3.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
     </Reference>
+    <!-- Google.Protobuf : sérialisation Protocol Buffers (requis par MySql.Data) -->
     <Reference Include="Google.Protobuf, Version=3.26.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>packages\Google.Protobuf.3.26.1\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
+    <!-- K4os.Compression.LZ4 : compression LZ4 (dépendance de MySql.Data) -->
     <Reference Include="K4os.Compression.LZ4, Version=1.3.8.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
       <HintPath>packages\K4os.Compression.LZ4.1.3.8\lib\net462\K4os.Compression.LZ4.dll</HintPath>
     </Reference>
@@ -51,25 +99,27 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <!-- MySql.Data : connecteur MySQL officiel (Oracle) — dépendance principale -->
     <Reference Include="MySql.Data, Version=9.2.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.9.2.0\lib\net462\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <!-- ── Assemblies .NET Framework intégrées ── -->
+    <Reference Include="System" />                      <!-- Assembly de base .NET -->
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration" />        <!-- Accès App.config -->
     <Reference Include="System.Configuration.ConfigurationManager, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Configuration.ConfigurationManager.8.0.0\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
     </Reference>
-    <Reference Include="System.Core" />
+    <Reference Include="System.Core" />                 <!-- LINQ, expressions lambda -->
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Diagnostics.DiagnosticSource.8.0.1\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Pipelines, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.IO.Pipelines.5.0.2\lib\net461\System.IO.Pipelines.dll</HintPath>
     </Reference>
-    <Reference Include="System.Management" />
+    <Reference Include="System.Management" />           <!-- WMI (Windows Management Instrumentation) -->
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -87,56 +137,73 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
+    <Reference Include="System.Data" />                 <!-- ADO.NET -->
     <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing" />              <!-- GDI+ (graphiques WinForms) -->
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms" />        <!-- WinForms -->
     <Reference Include="System.Xml" />
+    <!-- ZstdSharp : compression Zstandard (dépendance de MySql.Data) -->
     <Reference Include="ZstdSharp, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8d151af33a4ad5cf, processorArchitecture=MSIL">
       <HintPath>packages\ZstdSharp.Port.0.8.0\lib\net462\ZstdSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FICHIERS SOURCE ET RESSOURCES
+       Liste de tous les fichiers .cs compilés et .resx embarqués
+       ═══════════════════════════════════════════════════════════ -->
   <ItemGroup>
+    <!-- Affectation.cs : formulaire principal (affectation des jurés) -->
     <Compile Include="Affectation.cs">
       <SubType>Form</SubType>
     </Compile>
+    <!-- Affectation.Designer.cs : partie générée du formulaire Affectation -->
     <Compile Include="Affectation.Designer.cs">
       <DependentUpon>Affectation.cs</DependentUpon>
     </Compile>
+    <!-- Affichage du bilan global.cs : formulaire de consultation des bilans membres -->
     <Compile Include="Affichage du bilan global.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Affichage du bilan global.Designer.cs">
       <DependentUpon>Affichage du bilan global.cs</DependentUpon>
     </Compile>
+    <!-- BDD.cs : classe utilitaire de connexion MySQL -->
     <Compile Include="BDD.cs" />
+    <!-- Gestion.cs : formulaire d'ajout d'entraîneur -->
     <Compile Include="Gestion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Gestion.Designer.cs">
       <DependentUpon>Gestion.cs</DependentUpon>
     </Compile>
+    <!-- menu.cs : formulaire de navigation principale -->
     <Compile Include="menu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="menu.Designer.cs">
       <DependentUpon>menu.cs</DependentUpon>
     </Compile>
+    <!-- Modification.cs : formulaire de modification du numéro de jury -->
     <Compile Include="Modification.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modification.Designer.cs">
       <DependentUpon>Modification.cs</DependentUpon>
     </Compile>
+    <!-- modif_supp.cs : formulaire de modification/suppression d'entraîneur -->
     <Compile Include="modif_supp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="modif_supp.Designer.cs">
       <DependentUpon>modif_supp.cs</DependentUpon>
     </Compile>
+    <!-- Program.cs : point d'entrée de l'application -->
     <Compile Include="Program.cs" />
+    <!-- Properties\AssemblyInfo.cs : métadonnées de l'assembly -->
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <!-- Ressources embarquées (.resx → binaire dans l'assembly) -->
     <EmbeddedResource Include="Affectation.resx">
       <DependentUpon>Affectation.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,6 +222,7 @@
     <EmbeddedResource Include="modif_supp.resx">
       <DependentUpon>modif_supp.cs</DependentUpon>
     </EmbeddedResource>
+    <!-- Resources.resx : ressources globales de l'application -->
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -164,7 +232,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <!-- packages.config : déclaration des packages NuGet -->
     <None Include="packages.config" />
+    <!-- Settings.settings : définition des paramètres d'application -->
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -175,8 +245,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+
   <ItemGroup>
+    <!-- App.config : configuration runtime et redirections de binding -->
     <None Include="App.config" />
   </ItemGroup>
+
+  <!-- Import des cibles de compilation C# standard de MSBuild -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

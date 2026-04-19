@@ -1,7 +1,27 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
+<?xml version='1.0' encoding='utf-8'?>
+<!--
+  Settings.settings — Définition des paramètres d'application
+  =============================================================
+  Ce fichier XML est la source de vérité pour les paramètres d'application.
+  Il est utilisé par Visual Studio pour générer automatiquement la classe
+  Settings.Designer.cs (via SettingsSingleFileGenerator).
+
+  PARAMÈTRES DÉFINIS : Aucun
+  Ce fichier contient uniquement le profil par défaut sans paramètres personnalisés.
+  Pour ajouter des paramètres (ex : chaîne de connexion configurable, préférences
+  utilisateur), utiliser le Concepteur de paramètres de Visual Studio.
+
+  STRUCTURE :
+  - SettingsFile : élément racine, définit le profil courant
+  - Profiles     : liste des profils disponibles (ici uniquement "(Default)")
+  - Settings     : liste des paramètres (vide dans ce projet)
+-->
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings"
+              CurrentProfile="(Default)">
   <Profiles>
+    <!-- Profil par défaut utilisé au démarrage de l'application -->
     <Profile Name="(Default)" />
   </Profiles>
+  <!-- Aucun paramètre personnalisé défini dans ce projet -->
   <Settings />
 </SettingsFile>

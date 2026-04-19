@@ -1,33 +1,50 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// Les informations générales relatives à un assembly dépendent de
-// l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
-// associées à un assembly.
+// =============================================================================
+// AssemblyInfo.cs — Métadonnées de l'assembly Karate
+// =============================================================================
+// Ce fichier définit les attributs d'assembly qui décrivent l'identité,
+// la version et les propriétés de visibilité COM de l'application compilée.
+// Ces informations sont intégrées dans le binaire (.exe/.dll) produit.
+// =============================================================================
+
+// Nom affiché de l'assembly dans les propriétés du fichier et dans l'IDE
 [assembly: AssemblyTitle("Karate")]
+
+// Description fonctionnelle de l'assembly (laissée vide ici)
 [assembly: AssemblyDescription("")]
+
+// Configuration de build (ex : Debug, Release) — laissée vide, définie par MSBuild
 [assembly: AssemblyConfiguration("")]
+
+// Nom de l'entreprise ou de l'organisation auteure
 [assembly: AssemblyCompany("furbify")]
+
+// Nom du produit auquel appartient cet assembly
 [assembly: AssemblyProduct("Karate")]
+
+// Notice de copyright — mise à jour si le projet est redistribué
 [assembly: AssemblyCopyright("Copyright © furbify 2025")]
+
+// Marque déposée associée — laissée vide
 [assembly: AssemblyTrademark("")]
+
+// Culture de l'assembly (vide = culture neutre, assembly non localisé)
 [assembly: AssemblyCulture("")]
 
-// L'affectation de la valeur false à ComVisible rend les types invisibles dans cet assembly
-// aux composants COM. Si vous devez accéder à un type dans cet assembly à partir de
-// COM, affectez la valeur true à l'attribut ComVisible sur ce type.
+// ComVisible(false) : les types de cet assembly ne sont PAS exposés aux composants COM.
+// Mettre à true uniquement si l'interopérabilité COM est requise.
 [assembly: ComVisible(false)]
 
-// Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
+// GUID unique identifiant cet assembly en tant que typelib COM.
+// Utilisé si ComVisible est mis à true pour l'exposition COM.
 [assembly: Guid("2221e646-bbf4-4324-9bfb-352571ef1f23")]
 
-// Les informations de version pour un assembly se composent des quatre valeurs suivantes :
-//
-//      Version principale
-//      Version secondaire
-//      Numéro de build
-//      Révision
-//
+// Numéro de version de l'assembly au format : Majeure.Mineure.Build.Révision
+// Version actuelle : 1.0.0.0 (version initiale)
 [assembly: AssemblyVersion("1.0.0.0")]
+
+// Version du fichier binaire produit (apparaît dans les propriétés Windows du .exe)
 [assembly: AssemblyFileVersion("1.0.0.0")]
